@@ -1,0 +1,1 @@
+"# stockpilot"  initgit add README.mdgit commit -m "first commit"git branch -M maingit remote add origin git@github.com:deogratias228/stockpilot.gitgit push -u origin main
