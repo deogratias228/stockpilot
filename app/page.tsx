@@ -198,8 +198,8 @@ function Nav() {
         {/* <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
           <Package size={16} className="text-white" />
         </div> */}
-        <img src="android-chrome-512x512.png" className="w-8 h-8"/>
-        StockPilot 
+        <img src="android-chrome-512x512.png" className="w-8 h-8" />
+        StockPilot
       </a>
 
       <ul className="hidden md:flex items-center gap-8 list-none">
@@ -946,7 +946,7 @@ function Footer() {
           {/* <div className="w-7 h-7 bg-blue-600 rounded-lg flex items-center justify-center">
             <Package size={13} className="text-white" />
           </div> */}
-          <img src="android-chrome-512x512.png" className="w-8 h-8"/>
+          <img src="android-chrome-512x512.png" className="w-8 h-8" />
           StockPilot
         </div>
         <p className="text-xs text-white/30">© 2026 StockPilot. Conçu pour les commerçants africains.</p>
@@ -1067,12 +1067,18 @@ function HomeContent() {
 
       {/* WHY */}
       <WhySection />
+      
+      <DownloadSection />
 
       {/* BEFORE / AFTER */}
       <BeforeAfter />
 
+      <DownloadSection />
+
       {/* FEATURES */}
       <FeaturesSection />
+
+      <DownloadSection />
 
       {/* REVIEWS */}
       <ReviewsSection />
@@ -1080,6 +1086,8 @@ function HomeContent() {
       {/* PRICING */}
       <PricingSection />
 
+      <DownloadSection />
+      
       {/* FAQ */}
       <FAQSection />
 
