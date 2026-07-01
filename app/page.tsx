@@ -28,6 +28,8 @@ import {
   ReceiptText,
   CircleDollarSign,
 } from "lucide-react";
+import { DownloadModalProvider, useDownloadModal } from "@/contexts/DownloadModalContext";
+
 
 /* ─────────────────────────────────────────────
    HERO SLIDER
@@ -102,9 +104,8 @@ function HeroSlider() {
           <button
             key={i}
             onClick={() => { setDir(i > idx ? 1 : -1); setIdx(i); }}
-            className={`transition-all duration-300 rounded-full ${
-              i === idx ? "w-6 h-2 bg-blue-600" : "w-2 h-2 bg-slate-300"
-            }`}
+            className={`transition-all duration-300 rounded-full ${i === idx ? "w-6 h-2 bg-blue-600" : "w-2 h-2 bg-slate-300"
+              }`}
           />
         ))}
       </div>
@@ -132,10 +133,10 @@ function FadeIn({
     direction === "up"
       ? { opacity: 0, y: 36 }
       : direction === "left"
-      ? { opacity: 0, x: -36 }
-      : direction === "right"
-      ? { opacity: 0, x: 36 }
-      : { opacity: 0 };
+        ? { opacity: 0, x: -36 }
+        : direction === "right"
+          ? { opacity: 0, x: 36 }
+          : { opacity: 0 };
 
   return (
     <motion.div
@@ -188,11 +189,10 @@ function Nav() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 h-16 transition-all duration-300 ${
-        scrolled
-          ? "bg-white/95 backdrop-blur-xl border-b border-slate-200 shadow-sm"
-          : "bg-transparent"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 h-16 transition-all duration-300 ${scrolled
+        ? "bg-white/95 backdrop-blur-xl border-b border-slate-200 shadow-sm"
+        : "bg-transparent"
+        }`}
     >
       <a href="#" className="flex items-center gap-2.5 font-black text-lg tracking-tight text-slate-900 no-underline">
         <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
@@ -260,9 +260,8 @@ function AppMockup() {
           ].map(({ icon: Icon, label, active }) => (
             <div
               key={label}
-              className={`flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-xs font-medium cursor-default ${
-                active ? "bg-blue-600/25 text-blue-300" : "text-white/40"
-              }`}
+              className={`flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-xs font-medium cursor-default ${active ? "bg-blue-600/25 text-blue-300" : "text-white/40"
+                }`}
             >
               <Icon size={13} />
               {label}
@@ -690,11 +689,10 @@ function PricingSection() {
           {plans.map((plan, i) => (
             <FadeIn key={plan.name} delay={i * 0.07}>
               <div
-                className={`relative bg-white rounded-2xl border p-6 flex flex-col transition-all ${
-                  plan.featured
-                    ? "border-blue-500 shadow-[0_8px_40px_rgba(37,99,235,0.18)] scale-[1.03]"
-                    : "border-slate-200 shadow-sm"
-                }`}
+                className={`relative bg-white rounded-2xl border p-3 flex flex-col transition-all ${plan.featured
+                  ? "border-blue-500 shadow-[0_8px_40px_rgba(37,99,235,0.18)] scale-[1.03]"
+                  : "border-slate-200 shadow-sm"
+                  }`}
               >
                 {plan.featured && (
                   <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-[10px] font-bold px-4 py-1 rounded-full uppercase tracking-wide whitespace-nowrap">
@@ -724,11 +722,10 @@ function PricingSection() {
                 </ul>
                 <a
                   href="#contact"
-                  className={`block w-full text-center py-2.5 rounded-lg text-sm font-bold no-underline transition-all ${
-                    plan.featured
-                      ? "bg-blue-600 text-white hover:bg-blue-700 shadow-[0_4px_14px_rgba(37,99,235,0.3)]"
-                      : "border border-slate-300 text-slate-600 hover:border-blue-500 hover:text-blue-600"
-                  }`}
+                  className={`block w-full text-center py-2.5 rounded-lg text-sm font-bold no-underline transition-all ${plan.featured
+                    ? "bg-blue-600 text-white hover:bg-blue-700 shadow-[0_4px_14px_rgba(37,99,235,0.3)]"
+                    : "border border-slate-300 text-slate-600 hover:border-blue-500 hover:text-blue-600"
+                    }`}
                 >
                   {plan.cta}
                 </a>
@@ -830,6 +827,7 @@ function FAQSection() {
    DOWNLOAD
 ───────────────────────────────────────────── */
 function DownloadSection() {
+  const { openModal } = useDownloadModal();
   return (
     <section id="download" className="py-24 bg-slate-50 border-t border-slate-200">
       <div className="max-w-3xl mx-auto px-6 text-center">
@@ -842,14 +840,14 @@ function DownloadSection() {
             Compatible Windows 10 et 11. Installation en 2 minutes. Aucun internet requis après installation.
           </p>
 
-          <motion.a
-            href="#"
+          <motion.button
+            onClick={openModal}
             whileHover={{ y: -2, boxShadow: "0 10px 30px rgba(37,99,235,0.4)" }}
-            className="inline-flex items-center gap-3 bg-blue-600 text-white font-bold text-base px-8 py-4 rounded-xl no-underline shadow-[0_4px_20px_rgba(37,99,235,0.35)] transition-colors hover:bg-blue-700"
+            className="inline-flex items-center gap-3 bg-blue-600 text-white font-bold text-base px-8 py-4 rounded-xl border-none cursor-pointer shadow-[0_4px_20px_rgba(37,99,235,0.35)] transition-colors hover:bg-blue-700"
           >
             <Download size={20} />
             StockPilot-Setup.exe — Windows
-          </motion.a>
+          </motion.button>
 
           <div className="flex flex-wrap justify-center gap-8 mt-8">
             {["Windows 10 / 11 (64-bit)", "Version 1.0.0", "Mise à jour juin 2026"].map((item) => (
@@ -997,10 +995,9 @@ function StatsBand() {
   );
 }
 
-/* ─────────────────────────────────────────────
-   PAGE
-───────────────────────────────────────────── */
-export default function Home() {
+function HomeContent() {
+  const { openModal } = useDownloadModal();
+
   return (
     <>
       <Nav />
@@ -1105,14 +1102,14 @@ export default function Home() {
             <p className="text-lg text-white/60 mb-10 max-w-sm mx-auto leading-relaxed">
               21 jours gratuits, sans carte bancaire. Votre stock sous contrôle dès aujourd'hui.
             </p>
-            <motion.a
-              href="#download"
+            <motion.button
+              onClick={openModal}
               whileHover={{ y: -2 }}
-              className="inline-flex items-center gap-3 bg-white text-slate-900 font-bold text-base px-8 py-4 rounded-xl no-underline shadow-[0_4px_24px_rgba(0,0,0,0.3)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.35)] transition-all"
+              className="inline-flex items-center gap-3 bg-white text-slate-900 font-bold text-base px-8 py-4 rounded-xl border-none cursor-pointer shadow-[0_4px_24px_rgba(0,0,0,0.3)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.35)] transition-all"
             >
               <Download size={20} className="text-blue-600" />
               Télécharger StockPilot — Gratuit
-            </motion.a>
+            </motion.button>
           </FadeIn>
         </div>
       </section>
@@ -1122,5 +1119,17 @@ export default function Home() {
 
       <Footer />
     </>
+  );
+}
+
+
+/* ─────────────────────────────────────────────
+   PAGE
+───────────────────────────────────────────── */
+export default function Home() {
+  return (
+    <DownloadModalProvider>
+      <HomeContent />
+    </DownloadModalProvider>
   );
 }
