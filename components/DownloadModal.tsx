@@ -88,7 +88,7 @@ export default function DownloadModal({ isOpen, onClose, downloadUrl }: Download
               className="absolute top-5 right-5 w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors border-none cursor-pointer"
               aria-label="Fermer"
             >
-              <X size={18} />
+              <X size={18} />   
             </button>
 
             {status === "success" ? (
