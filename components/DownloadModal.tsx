@@ -58,8 +58,8 @@ export default function DownloadModal({ isOpen, onClose, downloadUrl }: Download
       }
 
       setStatus("success");
-      @ts-ignore
-      fbq("track", "Lead", { name, whatsapp }); // <-- important
+      //@ts-ignore
+      fbq("track", "Download"); // <-- important
       triggerFileDownload();
     } catch {
       setError("Connexion impossible. Vérifiez votre internet et réessayez.");
